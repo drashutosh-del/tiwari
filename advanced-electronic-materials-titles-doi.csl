@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<style xmlns="http://purl.org/net/xbiblio/csl" version="1.0" class="in-text" default-locale="en-US" demote-non-dropping-particle="sort-only">
+  <info>
+    <title>Advanced Electronic Materials - Article Titles and DOI (Custom)</title>
+    <title-short>Adv. Electron. Mater. Titles DOI</title-short>
+    <id>http://www.zotero.org/styles/advanced-electronic-materials-titles-doi-custom</id>
+    <link href="http://www.zotero.org/styles/advanced-electronic-materials-titles-doi-custom" rel="self"/>
+    <category citation-format="numeric"/>
+    <category field="engineering"/>
+    <summary>Custom numbered Wiley-style bibliography including full article titles and DOI links. Independently constructed; verify against journal proofs.</summary>
+    <updated>2026-10-28T00:00:00+00:00</updated>
+  </info>
+  <macro name="authors">
+    <names variable="author">
+      <name delimiter=", " and="text" initialize-with=". " name-as-sort-order="all" sort-separator=" "/>
+      <substitute><names variable="editor"/><text variable="title"/></substitute>
+    </names>
+  </macro>
+  <macro name="title">
+    <text variable="title" quotes="true"/>
+  </macro>
+  <macro name="container">
+    <choose>
+      <if type="article-journal article-magazine article-newspaper" match="any">
+        <text variable="container-title" form="short" font-style="italic"/>
+      </if>
+      <else><text variable="container-title" font-style="italic"/></else>
+    </choose>
+  </macro>
+  <macro name="date">
+    <date variable="issued"><date-part name="year" font-weight="bold"/></date>
+  </macro>
+  <macro name="locator">
+    <group delimiter=", ">
+      <text variable="volume" font-style="italic"/>
+      <text variable="issue" prefix="(" suffix=")"/>
+      <choose><if variable="page"><text variable="page"/></if><else><text variable="number"/></else></choose>
+    </group>
+  </macro>
+  <macro name="doi">
+    <choose>
+      <if variable="DOI"><text variable="DOI" prefix="https://doi.org/"/></if>
+      <else-if variable="URL"><text variable="URL"/></else-if>
+    </choose>
+  </macro>
+  <citation collapse="citation-number" after-collapse-delimiter=", ">
+    <layout vertical-align="sup" delimiter=", "><text variable="citation-number"/></layout>
+  </citation>
+  <bibliography et-al-min="11" et-al-use-first="10" entry-spacing="0" second-field-align="flush" hanging-indent="false">
+    <layout suffix=".">
+      <text variable="citation-number" prefix="[" suffix="] "/>
+      <group delimiter=", ">
+        <text macro="authors"/>
+        <text macro="title"/>
+        <text macro="container"/>
+        <text macro="date"/>
+        <text macro="locator"/>
+        <text macro="doi"/>
+      </group>
+    </layout>
+  </bibliography>
+</style>
